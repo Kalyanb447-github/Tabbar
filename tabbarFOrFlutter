@@ -1,0 +1,112 @@
+import 'package:bus_ticket_booking/main_tab.dart';
+import 'package:flutter/material.dart';
+//import 'package:'
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+
+        primarySwatch: Colors.blue,
+
+      ),
+      home: DefaultTabController(
+        length: 3,
+        child: MyHomePage(title: 'Flutter Demo Home Page')),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+int index = 0;
+
+  @override
+  Widget build(BuildContext context) {
+ 
+    return Scaffold(
+      appBar: AppBar(
+
+              bottom: new TabBar(
+
+            tabs: <Widget>[
+              new Tab(
+                text: "BUSES",
+              ),
+              new Tab(
+                text: "BUS HIRE",
+              ),
+              new Tab(
+                text: "Third",
+              ),
+            ],
+          ),
+      ),
+      
+      body: TabBarView(
+
+          children: <Widget>[
+            new Container(
+              color: Colors.grey[200],
+             child: MainTab(),
+            ),
+            new Container(
+              color: Colors.blueGrey,
+              child: new Center(
+                child: new Text(
+                  "Second",
+                  //style: textStyle(),
+                ),
+              ),
+            ),
+            new Container(
+              color: Colors.teal,
+              child: new Center(
+                child: new Text(
+                  "Third",
+                 // style: textStyle(),
+                ),
+              ),
+            ),
+          ],
+      ),
+     bottomNavigationBar: new BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+    
+
+      currentIndex: index,
+      onTap: (int index) { setState((){ this.index = index; }); },
+      items: <BottomNavigationBarItem>[
+        new BottomNavigationBarItem(
+          icon: new Icon(Icons.home),
+          title: new Text("Left"),
+        ),
+        new BottomNavigationBarItem(
+          icon: new Icon(Icons.list),
+          title: new Text("My Booking"),
+        ),
+         new BottomNavigationBarItem(
+          icon: new Icon(Icons.help),
+          title: new Text("Help"),
+        ),
+         new BottomNavigationBarItem(
+          icon: new Icon(Icons.account_circle),
+          title: new Text("My Account"),
+        ),
+      ],
+    ),
+    );
+  }
+}
